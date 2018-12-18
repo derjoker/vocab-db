@@ -8,7 +8,7 @@ import TableCell from '@material-ui/core/TableCell'
 
 class Books extends Component {
   render () {
-    const { books } = this.props
+    const { books, clickTableRow } = this.props
     return (
       <Table>
         <TableHead>
@@ -20,7 +20,12 @@ class Books extends Component {
         </TableHead>
         <TableBody>
           {books.map(book => (
-            <TableRow key={book._id}>
+            <TableRow
+              key={book._id}
+              onClick={() => {
+                clickTableRow(book._id)
+              }}
+            >
               <TableCell>{book.title}</TableCell>
               <TableCell>{book.authors}</TableCell>
               <TableCell>{book.lang}</TableCell>
@@ -33,7 +38,15 @@ class Books extends Component {
 }
 
 Books.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  clickTableRow: PropTypes.func
+}
+
+Books.defaultProps = {
+  books: [],
+  clickTableRow: bookKey => {
+    console.log(bookKey)
+  }
 }
 
 export default Books

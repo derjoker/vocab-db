@@ -18,3 +18,24 @@ export function books () {
     )
     .all()
 }
+
+export function vocabs (bookKey) {
+  const db = new Database(vocab, {
+    fileMustExist: true
+  })
+  return db
+    .prepare(
+      `
+      SELECT
+      LOOKUPS.usage,
+      LOOKUPS.id AS _id, WORDS.word, WORDS.stem, LOOKUPS.pos, LOOKUPS.timestamp
+      FROM
+      LOOKUPS
+      JOIN WORDS
+      ON LOOKUPS.word_key = WORDS.id
+      WHERE
+      book_key IS '${bookKey}'
+      `
+    )
+    .all()
+}
