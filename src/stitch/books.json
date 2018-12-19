@@ -1,0 +1,45 @@
+{
+  "properties": {
+    "_id": {
+      "bsonType": "string"
+    },
+    "user": {
+      "bsonType": "string"
+    },
+    "title": {
+      "bsonType": "string"
+    },
+    "authors": {
+      "bsonType": "string"
+    },
+    "lang": {
+      "bsonType": "string"
+    },
+    "lookups": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "object",
+        "properties": {
+          "_id": {
+            "bsonType": "string"
+          },
+          "usage": {
+            "bsonType": "string"
+          },
+          "word": {
+            "bsonType": "string"
+          },
+          "stem": {
+            "bsonType": "string"
+          },
+          "pos": {
+            "bsonType": "string"
+          },
+          "timestamp": {
+            "bsonType": "timestamp"
+          }
+        }
+      }
+    }
+  }
+}

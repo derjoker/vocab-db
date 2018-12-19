@@ -5,15 +5,15 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 
-class Usages extends Component {
+class Lookups extends Component {
   render () {
-    const { usages } = this.props
+    const { lookups } = this.props
     return (
       <Table>
         <TableBody>
-          {usages.map(usage => (
-            <TableRow key={usage.usage}>
-              <TableCell>{usage.usage}</TableCell>
+          {lookups.map(lookup => (
+            <TableRow key={lookup._id}>
+              <TableCell>{lookup.usage}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -22,12 +22,12 @@ class Usages extends Component {
   }
 }
 
-Usages.propTypes = {
-  usages: PropTypes.array.isRequired
+Lookups.propTypes = {
+  lookups: PropTypes.array.isRequired
 }
 
-Usages.defaultProps = {
-  usages: []
+Lookups.defaultProps = {
+  lookups: []
 }
 
-export default Usages
+export default Lookups

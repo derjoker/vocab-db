@@ -3,11 +3,9 @@ import { ipcRenderer } from 'electron'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import groupBy from 'lodash/groupBy'
-import entries from 'lodash/entries'
 
 import Books from '../components/Books'
-import Book from '../components/Book'
+import Book from './Book'
 
 export default class Kindle extends Component {
   constructor (props) {
@@ -34,18 +32,10 @@ export default class Kindle extends Component {
       this.setState({ books })
     })
 
-    ipcRenderer.on('vocabs', (_, vocabs) => {
+    ipcRenderer.on('lookups', (_, lookups) => {
       const { books, bookKey } = this.state
       const book = books.find(book => book._id === bookKey)
-      book.usages = entries(groupBy(vocabs, 'usage')).map(
-        ([usage, lookups]) => ({
-          usage,
-          lookups: lookups.map(lookup => {
-            delete lookup.usage
-            return lookup
-          })
-        })
-      )
+      book.lookups = lookups
       this.setState({ book })
     })
   }
@@ -76,7 +66,7 @@ export default class Kindle extends Component {
               books={filtered}
               clickTableRow={bookKey => {
                 this.setState({ bookKey })
-                ipcRenderer.send('fetch-vocabs', bookKey)
+                ipcRenderer.send('fetch-lookups', bookKey)
               }}
             />
           </Grid>

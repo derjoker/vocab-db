@@ -4,7 +4,7 @@ import installExtension, {
 } from 'electron-devtools-installer'
 import { enableLiveReload } from 'electron-compile'
 
-import { books, vocabs } from './main/kindle'
+import { books, lookups } from './main/kindle'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -67,6 +67,6 @@ ipcMain.on('fetch-books', event => {
   event.sender.send('books', books())
 })
 
-ipcMain.on('fetch-vocabs', (event, bookKey) => {
-  event.sender.send('vocabs', vocabs(bookKey))
+ipcMain.on('fetch-lookups', (event, bookKey) => {
+  event.sender.send('lookups', lookups(bookKey))
 })

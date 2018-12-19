@@ -19,7 +19,7 @@ export function books () {
     .all()
 }
 
-export function vocabs (bookKey) {
+export function lookups (bookKey) {
   const db = new Database(vocab, {
     fileMustExist: true
   })
@@ -27,8 +27,8 @@ export function vocabs (bookKey) {
     .prepare(
       `
       SELECT
-      LOOKUPS.usage,
-      LOOKUPS.id AS _id, WORDS.word, WORDS.stem, LOOKUPS.pos, LOOKUPS.timestamp
+      LOOKUPS.id AS _id, LOOKUPS.usage,
+      WORDS.word, WORDS.stem, LOOKUPS.pos, LOOKUPS.timestamp
       FROM
       LOOKUPS
       JOIN WORDS
