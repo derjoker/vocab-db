@@ -1,7 +1,20 @@
 import Database from 'better-sqlite3'
 import path from 'path'
+import fs from 'fs'
 
-const vocab = path.join(__dirname, 'vocab.db')
+const vocabs = []
+// Mac
+vocabs.push('/Volumes/Kindle/system/vocabulary/vocab.db')
+// Default (Sample)
+vocabs.push(path.join(__dirname, 'vocab.db'))
+
+function getVocab () {
+  for (let vocab of vocabs) {
+    if (fs.existsSync(vocab)) return vocab
+  }
+}
+
+const vocab = getVocab()
 
 export function books () {
   const db = new Database(vocab, {

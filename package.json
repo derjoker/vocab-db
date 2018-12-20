@@ -13,7 +13,7 @@
     "lint": "eslint --cache --color --ext .jsx,.js src"
   },
   "keywords": [],
-  "author": "fengya",
+  "author": "Feng Ya",
   "license": "MIT",
   "config": {
     "forge": {
@@ -30,7 +30,7 @@
         ]
       },
       "electronPackagerConfig": {
-        "packageManager": "yarn"
+        "packageManager": false
       },
       "electronWinstallerConfig": {
         "name": "vocab_db"

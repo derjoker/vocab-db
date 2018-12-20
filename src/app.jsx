@@ -3,7 +3,9 @@ import { Stitch } from 'mongodb-stitch-browser-sdk'
 
 import Kindle from './containers/Kindle'
 
+// .env
 require('dotenv').config()
+// manual (for package)
 
 try {
   Stitch.initializeDefaultAppClient(process.env.STITCH_APP_KEY)
